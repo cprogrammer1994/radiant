@@ -1,8 +1,17 @@
+import os
+
 import numpy as np
+
+from .materials import MeshBasicMaterial
+from .scenes import Mesh
 
 
 class Renderer:
     pass
+
+
+def read_shaders(id):
+    os.listdir(os.path.join(os.path.dirname(__file__), 'shaders'))
 
 
 class ModernGLRenderer:
@@ -20,4 +29,8 @@ class ModernGLRenderer:
         visit(scene)
 
     def render_object(self, object, camera, world):
-        print(world)
+        if isinstance(object, Mesh):
+            if isinstance(object.material, MeshBasicMaterial):
+                vert = ctx.vertex_shader(vertex_shader_source)
+frag = ctx.fragment_shader(fragment_shader_source)
+prog = ctx.program([vert, frag])
