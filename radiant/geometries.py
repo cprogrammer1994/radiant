@@ -25,7 +25,7 @@ class CubeGeometry(BufferGeometry):
             [1.0, -1.0, -1.0],
             [-1.0,  1.0, -1.0],
             [1.0,  1.0, -1.0],
-        ], dtype='f4').tobytes()
+        ], dtype='f4')
 
         # 6 sides, 2 triangles each
         self.indices = np.array([
@@ -41,4 +41,4 @@ class CubeGeometry(BufferGeometry):
             3, 2, 0,
             7, 5, 4,
             7, 4, 6,
-        ], dtype='i4').tobytes()
+        ], dtype='i4')

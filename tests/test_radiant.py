@@ -1,9 +1,15 @@
-import radiant
+import os
+
 import ModernGL
+
+from PIL import Image
+
+import radiant
 
 
 def test_render():
     ctx = ModernGL.create_standalone_context()
+    fbo = ctx.framebuffer(ctx.renderbuffer((512, 512)))
 
     renderer = radiant.ModernGLRenderer(ctx)
 
@@ -17,4 +23,13 @@ def test_render():
 
     camera = radiant.PerspectiveCamera([10, 10, 10], [0, 0, 0], up=[0, 1, 0])
 
+    fbo.use()
     renderer.render(scene, camera)
+
+    data = fbo.read(components=3, alignment=1)
+    img = Image.frombytes('RGB', fbo.size, data).transpose(Image.FLIP_TOP_BOTTOM)
+    filename = "screen.png"
+    with open(filename, mode="wb") as fh:
+        img.save(fh)
+
+    assert os.path.exists(filename)
