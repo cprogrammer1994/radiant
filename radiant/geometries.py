@@ -8,7 +8,7 @@ class Geometry:
 class BufferGeometry(Geometry):
     def __init__(self):
         self.attributes = dict()
-        self.indices = None
+        self.index = None
 
 
 class CubeGeometry(BufferGeometry):
@@ -16,7 +16,7 @@ class CubeGeometry(BufferGeometry):
         super().__init__()
 
         # 8 corners
-        self.attributes["position"] = np.array([
+        self.attributes["pos"] = np.array([
             [-1.0, -1.0,  1.0],
             [1.0, -1.0,  1.0],
             [-1.0,  1.0,  1.0],
@@ -28,7 +28,7 @@ class CubeGeometry(BufferGeometry):
         ], dtype='f4')
 
         # 6 sides, 2 triangles each
-        self.indices = np.array([
+        self.index = np.array([
             0, 6, 4,
             0, 2, 6,
             1, 5, 7,

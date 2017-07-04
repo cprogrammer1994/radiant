@@ -5,18 +5,19 @@ import ModernGL
 from PIL import Image
 
 import radiant
+from radiant.renderers.moderngl import ModernGLRenderer
 
 
 def test_render():
     ctx = ModernGL.create_standalone_context()
     fbo = ctx.framebuffer(ctx.renderbuffer((512, 512)))
 
-    renderer = radiant.ModernGLRenderer(ctx)
+    renderer = ModernGLRenderer(ctx)
 
     scene = radiant.Scene()
 
     cube_geom = radiant.CubeGeometry()
-    red = radiant.MeshBasicMaterial(color=(255, 0, 0))
+    red = radiant.MeshBasicMaterial(color=(1.0, 0.0, 0.0, 0.0))
     cube = radiant.Mesh(cube_geom, red)
 
     scene.children.append(cube)
